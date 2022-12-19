@@ -1,0 +1,169 @@
+{
+	"info": {
+		"_postman_id": "1d20076f-706f-4a6f-bd22-b9d3bbbc453f",
+		"name": "Automatizando testes Pokemon API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23777859"
+	},
+	"item": [
+		{
+			"name": "Retornando 20 pokemons",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var resultado = pm.response.json();\r",
+							"pm.test(\"Validando se tem 20 elementos\", function(){\r",
+							"    pm.response.to.be.lenght=20;\r",
+							"    \r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://pokeapi.co/api/v2/pokemon/",
+					"protocol": "https",
+					"host": [
+						"pokeapi",
+						"co"
+					],
+					"path": [
+						"api",
+						"v2",
+						"pokemon",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Testando se previous esta null",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var previous = pm.response.json();\r",
+							"pm.test(\"Verificando se previous esta null\", function(){\r",
+							"    pm.response.to.be.previous=null;\r",
+							"    \r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://pokeapi.co/api/v2/pokemon/",
+					"protocol": "https",
+					"host": [
+						"pokeapi",
+						"co"
+					],
+					"path": [
+						"api",
+						"v2",
+						"pokemon",
+						""
+					]
+				},
+				"description": "Verificando se previous esta null"
+			},
+			"response": []
+		},
+		{
+			"name": "Status 200 OK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://pokeapi.co/api/v2/pokemon/",
+					"protocol": "https",
+					"host": [
+						"pokeapi",
+						"co"
+					],
+					"path": [
+						"api",
+						"v2",
+						"pokemon",
+						""
+					]
+				},
+				"description": "Verificando se o endpoint está retornando Status 200"
+			},
+			"response": []
+		},
+		{
+			"name": "Atributo held_items retornando array vazio.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const itens = pm.response.json();\r",
+							"console.log(itens.held_items);\r",
+							"\r",
+							"pm.test(\"Atributo held_items retornando array vazio\", () => {\r",
+							"    pm.expect(itens.held_items).to.eql([])\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://pokeapi.co/api/v2/pokemon/1/",
+					"protocol": "https",
+					"host": [
+						"pokeapi",
+						"co"
+					],
+					"path": [
+						"api",
+						"v2",
+						"pokemon",
+						"1",
+						""
+					]
+				},
+				"description": "Atributo held_items retornando array vazio."
+			},
+			"response": []
+		},
+		{
+			"name": "Validando type name",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
